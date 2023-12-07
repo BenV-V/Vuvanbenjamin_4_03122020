@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attente - Les Mystères de l'Emploi</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #2c3e50; /* Bleu grisâtre plus sombre */
+      color: #ecf0f1; /* Gris clair */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #34495e; /* Bleu grisâtre foncé */
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      margin: 0;
+      color: #ffffff; /* Blanc */
+    }
+
+    #countdown {
+      font-size: 48px;
+      font-weight: bold;
+      color: #2ecc71; /* Vert émeraude */
+      margin: 20px;
+    }
+
+    #expired {
+      font-size: 48px;
+      font-weight: bold;
+      color: #e74c3c; /* Rouge corail */
+      margin: 20px;
+    }
+
+    #instructions {
+      font-size: 18px;
+      color: #ecf0f1; /* Gris clair */
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #waitingSection {
+      margin: 40px 0;
+    }
+
+    #waitingImage {
+      width: 300px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      cursor: pointer; /* Ajout du pointeur au survol pour indiquer que l'image est cliquable */
+    }
+
+    #waitingText {
+      font-size: 18px;
+      color: #ecf0f1; /* Gris clair */
+    }
+
+    footer {
+      background-color: #34495e; /* Bleu grisâtre foncé */
+      padding: 20px;
+      margin-top: auto;
+      color: #ecf0f1; /* Gris clair */
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Bienvenue, Joueurs !</h1>
+</header>
+
+<div id="instructions">
+  <p>Les Mystères de l'Emploi vous attendent avec impatience. L'aventure commence le 20 décembre, mais en attendant, ressentez l'anticipation qui plane dans l'air. Le compte à rebours ci-dessous indique le temps restant. Soyez prêts à plonger dans l'inconnu. Bonne chance !</p>
+</div>
+
+<div id="countdown">00:00:00</div>
+
+<script>
+  var countDownDate = new Date("Dec 20, 2023 00:00:00").getTime();
+
+  var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    var countdownElement = document.getElementById("countdown");
+    var expiredElement = document.getElementById("expired");
+
+    if (distance > 0) {
+      countdownElement.style.display = "block";
+      expiredElement.style.display = "none";
+
+      countdownElement.innerHTML = 
+        (days < 10 ? "0" : "") + days + "d " +
+        (hours < 10 ? "0" : "") + hours + "h " +
+        (minutes < 10 ? "0" : "") + minutes + "m " +
+        (seconds < 10 ? "0" : "") + seconds + "s";
+    } else {
+      clearInterval(x);
+      countdownElement.style.display = "none";
+      expiredElement.style.display = "block";
+    }
+  }, 1000);
+</script>
+
+<div id="expired">EXPIRÉ</div>
+
+<div id="waitingSection">
+  <p id="waitingText">En attendant, pour patienter :</p>
+  <img id="waitingImage" src="tt/Discord.png" alt="En attendant">
+  <!-- Ajoutez ici d'autres éléments ou activités pour patienter -->
+</div>
+
+<footer>
+  <p>&copy; 2023 Les Mystères de l'Emploi. Proposé par la Mission Locale du Provinois. Tous droits réservés.</p>
+</footer>
+
+</body>
+</html>
